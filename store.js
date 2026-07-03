@@ -405,7 +405,7 @@ function parentLabel(t){
   return '';
 }
 
-/* group tasks by parent (project/area), Things-style */
+/* group tasks by parent (project/area) */
 function groupByParent(tasks){
   const groups = new Map();
   tasks.sort(byOrder).forEach(t => {

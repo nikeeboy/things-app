@@ -1,4 +1,4 @@
-/* ui.js — Things 3 style interface: sidebar, views, editor, popovers, quick entry, quick find, DnD, keyboard */
+/* ui.js — interface: sidebar, views, editor, popovers, quick entry, quick find, DnD, keyboard */
 'use strict';
 
 const UI = {
@@ -1040,7 +1040,7 @@ function settingsModal(){
       <input type="text" id="set-cid" value="${esc(Drive.clientId)}" placeholder="xxxxxxxx.apps.googleusercontent.com">
       <div class="hint">Create a Web OAuth client in Google Cloud Console with this page's origin (e.g. http://localhost:8000) as an authorized JavaScript origin, and enable the Google Drive API. See README.md for a step-by-step guide.</div>
     </div>
-    <div class="set-status" id="set-status">${DriveState.connected ? '✓ Connected to Google Drive. Tasks are stored as Markdown files in the “Things GTD” folder.' : 'Not connected — data is stored locally in this browser.'}
+    <div class="set-status" id="set-status">${DriveState.connected ? '✓ Connected to Google Drive. Tasks are stored as Markdown files in the “GTD” folder.' : 'Not connected — data is stored locally in this browser.'}
     ${DriveState.error ? '<br><span style="color:var(--red)">Last error: ' + esc(DriveState.error) + '</span>' : ''}</div>
     <div class="set-actions">
       ${DriveState.connected
@@ -1425,11 +1425,11 @@ function seedWelcome(){
   if(db.meta.seeded || db.tasks.length || db.projects.length) return;
   db.meta.seeded = true;
   const a = Store.newArea({ title:'Personal' });
-  const p = Store.newProject({ title:'Get Started with Things', areaId: a.id });
+  const p = Store.newProject({ title:'Get Started with GTD', areaId: a.id });
   Store.newTask({ title:'Create your first to-do', notes:'Press N or click the blue + button.', projectId:p.id, areaId:a.id, when:'today' });
   Store.newTask({ title:'Schedule a to-do', notes:'Open a to-do and pick a date with the calendar button — it will appear in Upcoming.', projectId:p.id, areaId:a.id, when:'anytime' });
   Store.newTask({ title:'Try Quick Find', notes:'Press ⌘K (or /) to search and jump anywhere.', projectId:p.id, areaId:a.id, when:'anytime' });
-  Store.newTask({ title:'Connect Google Drive', notes:'Open Settings (gear icon, bottom-left) and connect your Google account. Your to-dos become Markdown files in a “Things GTD” folder.', projectId:p.id, areaId:a.id, when:'anytime' });
+  Store.newTask({ title:'Connect Google Drive', notes:'Open Settings (gear icon, bottom-left) and connect your Google account. Your to-dos become Markdown files in a “GTD” folder.', projectId:p.id, areaId:a.id, when:'anytime' });
   Store.newTask({ title:'Capture an idea to the Inbox', when:null });
 }
 

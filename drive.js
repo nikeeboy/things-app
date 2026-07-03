@@ -1,6 +1,6 @@
 /* drive.js — Google Identity Services auth + Google Drive storage backend.
    Layout on Drive:
-     Things GTD/                  (root)
+     GTD/                         (root)
        Inbox/                     loose to-dos (no area/project)
        <Area>/_area.md            area marker + metadata
        <Area>/<Project>/_project.md
@@ -10,7 +10,7 @@
 */
 'use strict';
 
-const ROOT_NAME = 'Things GTD';
+const ROOT_NAME = 'GTD';
 const SERVICE_NAME = '_service';
 const INBOX_NAME = 'Inbox';
 const TRASH_NAME = 'Trash';
