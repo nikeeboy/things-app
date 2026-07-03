@@ -67,9 +67,12 @@ function render(){
   renderMain();
 }
 
+function closeDrawer(){ document.body.classList.remove('sb-open'); }
+
 function setView(v){
   UI.view = v; UI.editingId = null; UI.tagFilter = null; UI.kbsel = null;
   localStorage.setItem('things.view', JSON.stringify(v));
+  closeDrawer();
   render();
   $('#main').scrollTop = 0;
 }
@@ -1292,6 +1295,13 @@ function wireGlobal(){
   /* magic plus */
   $('#magicPlus').addEventListener('click', newTaskInView);
 
+  /* mobile drawer */
+  $('#sbToggle').addEventListener('click', e => {
+    e.stopPropagation();
+    document.body.classList.toggle('sb-open');
+  });
+  $('#sbBackdrop').addEventListener('click', closeDrawer);
+
   /* outside click: close pops & editor.
      NB: mousedown fires before click; render() would detach the click target,
      so row/checkbox interactions are resolved here when an editor is open. */
@@ -1326,6 +1336,7 @@ function wireGlobal(){
     if(e.key === 'Escape'){
       if($$('.pop').length){ closePops(); return; }
       if($$('.modal').length){ closeModals(); return; }
+      if(document.body.classList.contains('sb-open')){ closeDrawer(); return; }
       if(UI.editingId){ closeEditor(); return; }
       if(UI.tagFilter){ UI.tagFilter = null; render(); return; }
       return;
